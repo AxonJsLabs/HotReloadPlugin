@@ -90,4 +90,6 @@ class HotReload implements AxonPlugin {
     }
 }
 
-export default HotReload;
+export {
+    HotReload
+};
