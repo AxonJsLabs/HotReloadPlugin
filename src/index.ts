@@ -1,4 +1,4 @@
-import { AxonCore, AxonPlugin } from "@axonlabs/core";
+import { AxonCore, AxonPlugin, AxonRouter } from "@axonlabs/core";
 import * as fs from "fs";
 import * as path from "path";
 import chokidar from "chokidar";
@@ -43,7 +43,7 @@ class HotReload implements AxonPlugin {
                     filePath.endsWith('.mjs') ||
                     filePath.endsWith('.cjs') ||
                     filePath.endsWith('.ts')) {
-
+                        
                     delete require.cache[require.resolve(filePath)];
 
                     this.loadRoutes(core, routersDir);
@@ -63,6 +63,13 @@ class HotReload implements AxonPlugin {
         try {
             const reloadLabel = "[Hot Reload]: Core reloaded in";
             console.time(reloadLabel)
+            core.unloadRoute({ method: "GET" });
+            core.unloadRoute({ method: "DELETE" });
+            core.unloadRoute({ method: "POST" });
+            core.unloadRoute({ method: "PUT" });
+            core.unloadRoute({ method: "PATCH" });
+            core.unloadRoute({ method: "OPTIONS" });
+            // TODO: When unloadRoutes method fixed, change this part to unloadRoutes.
             fs.readdirSync(routesDir).forEach(file => {
                 if (
                     file.endsWith('route.js') ||
@@ -72,12 +79,24 @@ class HotReload implements AxonPlugin {
                     const filePath = path.join(routesDir, file);
                     try {
                         delete require.cache[require.resolve(filePath)];
+
                         const imported = require(filePath);
                         const router = imported.default || imported;
-                        core.unloadRoute({
-                            router
-                        });
-                        core.loadRoute(router);
+
+                        if (typeof router !== "object") {
+                            return;
+                        }
+
+                        if (router instanceof AxonRouter) {
+                            core.loadRoute(router);
+                            return;
+                        }
+
+                        for (const item of Object.values(router)) {
+                            if (item instanceof AxonRouter) {
+                                core.loadRoute(item);
+                            }
+                        }
                     } catch (err) {
                         console.error(`[Hot Reload]: Error loading route ${file}:\n`, err);
                     }

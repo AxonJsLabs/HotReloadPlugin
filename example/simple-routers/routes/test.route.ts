@@ -1,5 +1,5 @@
 import { Router } from "@axonlabs/core";
-import { testControllerFn } from "../../example/controller/testController";
+import { testControllerFn } from "../controller/testController";
 
 const router = Router();
 
