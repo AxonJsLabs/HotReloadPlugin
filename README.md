@@ -1,6 +1,11 @@
 # HotReloadPlugin
  HotReloadPlugin is an Axon plugin that enables dynamic hot‑reloading of route modules.
 
+## Install plugin
+```bash
+npm install @axonlabs/hot-reload-plugin
+```
+
 ## Install Axon Framework
 
 ```bash
