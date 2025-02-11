@@ -1,0 +1,39 @@
+{
+  "name": "@axonlabs/hot-reload-plugin",
+  "version": "1.0.0",
+  "description": "HotReloadPlugin is an Axon plugin that enables dynamic hot‑reloading of route modules.",
+  "keywords": [
+    "Axon",
+    "AxonJs",
+    "utils",
+    "hot-reload",
+    "axon-plugin"
+  ],
+  "homepage": "https://github.com/AxonJsLabs/HotReloadPlugin#readme",
+  "bugs": {
+    "url": "https://github.com/AxonJsLabs/HotReloadPlugin/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AxonJsLabs/HotReloadPlugin.git"
+  },
+  "license": "ISC",
+  "author": "Mr.MKZ",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "start": "ts-node example/index.ts"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "tsup": "^8.3.6",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "chokidar": "^4.0.3"
+  },
+  "peerDependencies": {
+    "@axonlabs/core": ">=0.7.0 <2.0.0"
+  }
+}
