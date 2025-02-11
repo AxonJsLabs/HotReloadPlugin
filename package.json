@@ -1,6 +1,6 @@
 {
   "name": "@axonlabs/hot-reload-plugin",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description": "HotReloadPlugin is an Axon plugin that enables dynamic hot‑reloading of route modules.",
   "keywords": [
     "Axon",
