@@ -18,7 +18,7 @@ import chokidar from "chokidar";
  */
 class HotReload implements AxonPlugin {
     public name = "Hot Reload";
-    public version = "1.0.0";
+    public version = "1.1.1";
 
     private routesDir: string;
     private rootDir: string;
