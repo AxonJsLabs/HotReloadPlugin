@@ -18,7 +18,7 @@ import chokidar from "chokidar";
  */
 class HotReload implements AxonPlugin {
     public name = "Hot Reload";
-    public version = "1.1.1";
+    public version = "1.1.2";
 
     private routesDir: string;
     private rootDir: string;
@@ -63,13 +63,7 @@ class HotReload implements AxonPlugin {
         try {
             const reloadLabel = "[Hot Reload]: Core reloaded in";
             console.time(reloadLabel)
-            core.unloadRoute({ method: "GET" });
-            core.unloadRoute({ method: "DELETE" });
-            core.unloadRoute({ method: "POST" });
-            core.unloadRoute({ method: "PUT" });
-            core.unloadRoute({ method: "PATCH" });
-            core.unloadRoute({ method: "OPTIONS" });
-            // TODO: When unloadRoutes method fixed, change this part to unloadRoutes.
+            core.unloadRoutes();
             fs.readdirSync(routesDir).forEach(file => {
                 if (
                     file.endsWith('route.js') ||
