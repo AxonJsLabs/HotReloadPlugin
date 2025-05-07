@@ -1,8 +1,8 @@
 import { Router } from "@axonlabs/core";
 import { testControllerFn } from "../controller/testController";
 
-const router = Router();
+const router = Router("/api/v1");
 
-router.get('/api/v1/user', testControllerFn);
+router.get('/user', testControllerFn);
 
 export default router;

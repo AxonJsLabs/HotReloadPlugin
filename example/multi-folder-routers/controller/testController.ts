@@ -1,6 +1,6 @@
-import { Controller } from "@axonlabs/core";
+import { Request, Response } from "@axonlabs/core";
 
-const testControllerFn: Controller = async (req, res) => {
+const testControllerFn = async (req: Request<any>, res: Response) => {
     return res.status(200).body({
         message: "jalebe"
     });

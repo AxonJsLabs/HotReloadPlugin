@@ -1,9 +1,8 @@
-import { Controller } from "@axonlabs/core";
+import { Request, Response } from "@axonlabs/core";
+import { response } from "../services/test.service";
 
-const testControllerFn: Controller = async (req, res) => {
-    return res.status(200).body({
-        message: "jalebe"
-    });
+const testControllerFn = async (req: Request<any>, res: Response) => {
+    return res.status(200).body(response());
 }
 
 export {

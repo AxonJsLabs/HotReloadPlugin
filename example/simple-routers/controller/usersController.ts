@@ -1,6 +1,6 @@
-import { Controller } from "@axonlabs/core";
+import { Request, Response } from "@axonlabs/core";
 
-const getUser: Controller = async (req, res) => {
+const getUser = async (req: Request<any>, res: Response) => {
     return res.status(200).body({
         user: {
             username: "Mr.MKZ",
